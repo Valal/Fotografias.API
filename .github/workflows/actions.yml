@@ -3,7 +3,7 @@ name: Fotografias_service
 on:
   push:
     branches:
-      - features/implementacion-workflows
+      - features/correccion-ruta-xunit
   pull_request:
     branches:
       - develop
@@ -25,5 +25,5 @@ jobs:
       - name: Compilar proyecto
         run: dotnet build ./Fotografias.Api.sln --configuration Release --no-restore
         
-      - name: Ejecutar pruebas con cobertura de código  
-        run: dotnet test ./Fotografias.Api.sln \ --configuration Release \ --no-build /p:CollectCoverage=true \ /p:CoverletOutputFormat=opencover
+      - name: Ejecutar pruebas con cobertura de código
+        run: dotnet test ./Fotografias.Api.Tests/Fotografias.Api.Tests.csproj --collect:"XPlat Code Coverage"
