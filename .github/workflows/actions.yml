@@ -1,0 +1,30 @@
+name: Fotografias_service
+
+on:
+  push:
+    branches:
+      - features/implementacion-workflows
+  pull_request:
+    branches:
+      - develop
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Revisión de código
+        - uses: actions/checkout@v4
+
+        - name: Implementar NET 10
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: 10.0.x
+
+        - name: Restaurar dependencias
+          run: dotnet restore ./Fotografias.Api.sln
+        
+        - name: Compilar proyecto
+          run: dotnet build ./Fotografias.Api.sln --configuration Release --no-restore
+        
+        - name: Ejecutar pruebas
+          run: dotnet test ./Fotografias.Api.sln --configuration Release --no-build --verbosity normal  
+          run: dotnet test ./Fotografias.Api.sln \ --configuration Release \ --no-build /p:CollectCoverage=true \ /p:CoverletOutputFormat=opencover
