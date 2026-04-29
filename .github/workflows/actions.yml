@@ -26,4 +26,4 @@ jobs:
         run: dotnet build ./Fotografias.Api.sln --configuration Release --no-restore
         
       - name: Ejecutar pruebas con cobertura de código
-        run: dotnet test ./Fotografias.Api.Tests/Fotografias.Api.Tests.csproj --collect:"XPlat Code Coverage"
+        run: dotnet test ./Fotografias.Api.Test/Fotografias.Api.Test.csproj --collect:"XPlat Code Coverage"
