@@ -3,7 +3,7 @@ name: Fotografias_service
 on:
   push:
     branches:
-      - features/Variables
+      - features/variables-en-yml
   pull_request:
     branches:
       - develop
