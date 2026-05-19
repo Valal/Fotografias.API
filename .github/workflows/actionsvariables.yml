@@ -22,10 +22,10 @@ jobs:
         env:
           mensaje: Hola soy una variable
         run : |
-          echo "Aplicacion: " $App_name"
+          echo "Aplicacion: $App_name"
           echo "Version de framework: $Dotnet_Version"
           echo "Variable local: $TipoEjecucion"
-          echo mensaje
+          echo $mensaje
           echo "Mostrar rama de liberacion: ${{github.ref}}"
       
       - name: Crear Variable
