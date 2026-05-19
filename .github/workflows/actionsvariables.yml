@@ -3,14 +3,37 @@ name: Fotografias_service
 on:
   push:
     branches:
-      - features/correccion-ruta-xunit
+      - features/Variables
   pull_request:
     branches:
       - develop
+env: 
+    App_name: 'Fotografias.API'
+    Dotnet_Version: '10'
+
 jobs: 
   build: 
     runs-on: ubuntu-latest 
+    env: 
+      TipoEjecucion: 'Validacion de variables'
+
     steps: 
+      - name: Mostrar Variables Todas
+        env:
+          mensaje: Hola soy una variable
+        run : |
+          echo "Aplicacion: " $App_name"
+          echo "Version de framework: $Dotnet_Version"
+          echo "Variable local: $TipoEjecucion"
+          echo mensaje
+          echo "Mostrar rama de liberacion: ${{github.ref}}"
+      
+      - name: Crear Variable
+        run: echo "framework= NET.10" >> ${{github.ref}}
+        
+      - name: Usar Variable
+        run: echo $framework
+
       - name: Revision de código 
         uses: actions/checkout@v4 
       
