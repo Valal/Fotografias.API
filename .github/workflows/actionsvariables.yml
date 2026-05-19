@@ -26,10 +26,10 @@ jobs:
           echo "Version de framework: $Dotnet_Version"
           echo "Variable local: $TipoEjecucion"
           echo $mensaje
-          echo "Mostrar rama de liberacion: ${{github.ref}}"
+#          echo "Mostrar rama de liberacion: ${{github.ref}}"
       
-      - name: Crear Variable
-        run: echo "framework= NET.10" >> ${{github.ref}}
+#      - name: Crear Variable
+#        run: echo "framework= NET.10" >> ${{github.ref}}
         
       - name: Usar Variable
         run: echo $framework
