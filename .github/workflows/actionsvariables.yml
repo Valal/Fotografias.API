@@ -28,7 +28,7 @@ jobs:
       - name: Variables del repositorio
         run: 
           echo ${{vars.PROYECT_DESCRIPTION}}
-          echo ${{GITHUB_WORKSPACE}}
+          echo $GITHUB_WORKSPACE
 
       - name: Reemplazar appsettings
         shell: pwsh
