@@ -13,6 +13,9 @@ jobs:
       TipoEjecucion: 'Validacion de variables'
 
     steps: 
+      - name: Ejecutar checkout
+        uses: actions/checkout@v4 
+        
       - name: Mostrar Variables Todas
         env:
           mensaje: Hola soy una variable
