@@ -1,12 +1,7 @@
 name: Fotografias_service
 
 on:
-  push:
-    branches:
-      - features/variables-en-yml
-  pull_request:
-    branches:
-      - develop
+  workflow_call:
 env: 
     App_name: 'Fotografias.API'
     Dotnet_Version: '10'
@@ -26,27 +21,19 @@ jobs:
           echo "Version de framework: $Dotnet_Version"
           echo "Variable local: $TipoEjecucion"
           echo $mensaje
-#          echo "Mostrar rama de liberacion: ${{github.ref}}"
-      
-#      - name: Crear Variable
-#        run: echo "framework= NET.10" >> ${{github.ref}}
         
       - name: Usar Variable
         run: echo $framework
 
-      - name: Revision de código 
-        uses: actions/checkout@v4 
-      
-      - name: Setup .NET 
-        uses: actions/setup-dotnet@v4 
-        with: 
-          dotnet-version: '10.0.x'
+      - name: Variables del repositorio
+        run: echo ${{vars.PROYECT_DESCRIPTION}}
 
-      - name: Restaurar dependencias
-        run: dotnet restore ./Fotografias.Api.sln
-        
-      - name: Compilar proyecto
-        run: dotnet build ./Fotografias.Api.sln --configuration Release --no-restore
-        
-      #- name: Ejecutar pruebas con cobertura de código
-      #  run: dotnet test ./Fotografias.Api.Test/Fotografias.Api.Test.csproj --collect:"XPlat Code Coverage"
+      - name: Reemplazar appsettings
+        shell: pwsh
+        run: |
+          $json = Get-Content "Fotografias.Api/appsettings.json" | ConvertFrom-Json
+          
+          $json.ConnectionStrings.default = "Prueba del cambio exitosa"
+
+          $json | ConvertTo-Json -Depth 10 | Set-Content appsettings.json
+          echo $json

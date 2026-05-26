@@ -3,11 +3,14 @@ name: Fotografias_service
 on:
   push:
     branches:
-      - features/correccion-ruta-xunit
+      - features/prueba_workflow_reusable
   pull_request:
     branches:
       - develop
 jobs: 
+  call_env:
+    uses: ./.github/workflows/actionsvariables.yml
+
   build: 
     runs-on: ubuntu-latest 
     steps: 
