@@ -31,7 +31,7 @@ jobs:
       - name: Reemplazar appsettings
         shell: pwsh
         run: |
-          $json = Get-Content "./Fotografias.Api/appsettings.json" | ConvertFrom-Json
+          $json = Get-Content "/Fotografias.Api/appsettings.json" | ConvertFrom-Json
           
           $json.ConnectionStrings.default = "Prueba del cambio exitosa"
 
