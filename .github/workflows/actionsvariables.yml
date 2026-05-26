@@ -33,9 +33,10 @@ jobs:
       - name: Reemplazar appsettings
         shell: pwsh
         run: |
-          $json = Get-Content "Fotografias.Api/appsettings.json" | ConvertFrom-Json
-          
+          $path = "$env:GITHUB_WORKSPACE\Fotografias.Api\appsettings.json"
+
+          $json = Get-Content $path -Raw | ConvertFrom-Json
+
           $json.ConnectionStrings.default = "Prueba del cambio exitosa"
 
-          $json | ConvertTo-Json -Depth 10 | Set-Content appsettings.json
-          echo $json
+          $json | ConvertTo-Json -Depth 10 | Set-Content $path
