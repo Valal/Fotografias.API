@@ -39,9 +39,13 @@ jobs:
           $path = "$env:GITHUB_WORKSPACE\Fotografias.Api\appsettings.json"
 
           $json = Get-Content $path -Raw | ConvertFrom-Json
+          
+          echo "antes..."
+          echo $json
 
           $json.ConnectionStrings.default = "Prueba del cambio exitosa"
 
           $json | ConvertTo-Json -Depth 10 | Set-Content $path
 
+          echo "despues..."
           echo $json
